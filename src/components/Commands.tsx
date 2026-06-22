@@ -1,0 +1,207 @@
+import { useState } from 'react';
+import { DiscordSVG } from './DiscordIcon';
+
+interface Command {
+  name: string;
+  cat: 'general' | 'admin' | 'voice';
+  desc: string;
+  ex?: string;
+}
+
+const commands: Command[] = [
+  { name: '/ask-ai', cat: 'general', desc: 'Chat with Kichi or ask her to create a reminder using natural language.', ex: 'kichi bikinin reminder jam 9 malam' },
+  { name: '/help', cat: 'general', desc: 'Show all available commands and what Kichi can do for your server.' },
+  { name: '/ping', cat: 'general', desc: 'Check bot latency and make sure Kichi is alive and well.', ex: '🏓 Pong! Latency: 42ms' },
+  { name: '/about', cat: 'general', desc: "Info about Kichi — her backstory, who built her, and why she slaps." },
+  { name: '/forget', cat: 'general', desc: 'Reset your personal chat memory. Fresh start with zero history.' },
+  { name: '/lyrics', cat: 'general', desc: 'Search song lyrics by title and artist. Auto-splits long results into multiple embeds.', ex: '/lyrics judul:Yellow artis:Coldplay' },
+  { name: '/join', cat: 'voice', desc: 'Invite Kichi to your current voice channel. She brings TTS with her.' },
+  { name: '/leave', cat: 'voice', desc: 'Kick Kichi out of voice. Caller or admin/mod only — she respects the hierarchy.' },
+  { name: '/speak', cat: 'voice', desc: 'Make Kichi say something in VC via Piper TTS. Offline, no API key needed.', ex: '/speak text:Halo guys!' },
+  { name: '/reminder list', cat: 'admin', desc: 'View all scheduled reminders and their status for this server.' },
+  { name: '/reminder create', cat: 'admin', desc: 'Create a new custom reminder with time and message pool.' },
+  { name: '/reminder edit', cat: 'admin', desc: 'Edit existing reminders: toggle on/off, change time, update messages.' },
+  { name: '/reminder delete', cat: 'admin', desc: 'Permanently remove a custom reminder from the server.' },
+  { name: '/reminder channel', cat: 'admin', desc: 'Add, remove, or list channels where reminders are broadcast.' },
+];
+
+const catStyle = {
+  general: {
+    icon: '#',
+    label: 'General',
+    color: '#818cf8',
+    bg: 'rgba(88,101,242,.12)',
+    border: 'rgba(88,101,242,.28)',
+    badgeBg: 'rgba(88,101,242,.15)',
+    badgeColor: '#818cf8',
+  },
+  admin: {
+    icon: '🛡',
+    label: 'Admin/Mod',
+    color: '#fbbf24',
+    bg: 'rgba(245,158,11,.1)',
+    border: 'rgba(245,158,11,.28)',
+    badgeBg: 'rgba(245,158,11,.12)',
+    badgeColor: '#fbbf24',
+  },
+  voice: {
+    icon: '🎙',
+    label: 'Voice',
+    color: '#c084fc',
+    bg: 'rgba(168,85,247,.12)',
+    border: 'rgba(168,85,247,.28)',
+    badgeBg: 'rgba(168,85,247,.15)',
+    badgeColor: '#c084fc',
+  },
+} as const;
+
+type FilterType = 'all' | keyof typeof catStyle;
+
+const filterTabs: { id: FilterType; label: string }[] = [
+  { id: 'all', label: '⚡ All' },
+  { id: 'general', label: '# General' },
+  { id: 'admin', label: '🛡 Admin / Mod' },
+  { id: 'voice', label: '🎙 Voice' },
+];
+
+export default function Commands() {
+  const [activeFilter, setActiveFilter] = useState<FilterType>('all');
+
+  const filtered = activeFilter === 'all'
+    ? commands
+    : commands.filter((c) => c.cat === activeFilter);
+
+  return (
+    <section id="commands" className="relative py-24 z-[1]">
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: 'radial-gradient(ellipse 70% 50% at 50% 50%, rgba(88,101,242,.04), transparent)',
+        }}
+      />
+
+      <div className="max-w-[1200px] mx-auto px-6">
+        {/* Header */}
+        <div className="text-center mb-16 reveal">
+          <span className="pill pill-blue">⚡ Commands</span>
+          <h2
+            className="font-bold leading-tight mt-3 mb-3"
+            style={{ fontSize: 'clamp(1.8rem, 4vw, 2.8rem)' }}
+          >
+            Slash Commands
+            <br />
+            <span className="discord-text">That Actually Work</span>
+          </h2>
+          <p className="text-slate-500 text-[1.05rem] max-w-[560px] mx-auto leading-relaxed">
+            Clean, organized commands for everyone — with admin-only protection where it matters.
+          </p>
+        </div>
+
+        {/* Filter tabs */}
+        <div className="flex flex-wrap gap-2 justify-center mb-8">
+          {filterTabs.map((tab) => (
+            <button
+              key={tab.id}
+              onClick={() => setActiveFilter(tab.id)}
+              className="px-4 py-2 rounded-xl text-sm font-medium cursor-pointer transition-all duration-200"
+              style={{
+                background: activeFilter === tab.id ? 'rgba(88,101,242,.15)' : 'transparent',
+                color: activeFilter === tab.id ? '#818cf8' : '#64748b',
+                border: activeFilter === tab.id
+                  ? '1px solid rgba(88,101,242,.35)'
+                  : '1px solid transparent',
+              }}
+            >
+              {tab.label}
+            </button>
+          ))}
+        </div>
+
+        {/* Commands grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          {filtered.map((cmd) => {
+            const s = catStyle[cmd.cat];
+            return (
+              <div
+                key={cmd.name}
+                className="glass rounded-[0.875rem] p-4 flex gap-3.5 transition-all duration-200 hover:-translate-y-0.5"
+                style={{ borderColor: 'transparent' }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLDivElement).style.borderColor = 'rgba(88,101,242,.3)';
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLDivElement).style.borderColor = 'transparent';
+                }}
+              >
+                {/* Cat icon */}
+                <div
+                  className="w-8 h-8 rounded-lg flex-shrink-0 flex items-center justify-center text-sm"
+                  style={{ background: s.bg, border: `1px solid ${s.border}` }}
+                >
+                  {s.icon}
+                </div>
+
+                {/* Content */}
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center flex-wrap gap-1.5 mb-0.5">
+                    <span className="font-mono text-[0.82rem] font-semibold text-indigo-400">
+                      {cmd.name}
+                    </span>
+                    <span
+                      className="text-[0.6rem] font-semibold px-2 py-0.5 rounded-full"
+                      style={{
+                        background: s.badgeBg,
+                        color: s.badgeColor,
+                        border: `1px solid ${s.border}`,
+                      }}
+                    >
+                      {s.label}
+                    </span>
+                  </div>
+                  <p className="text-slate-500 text-[0.78rem] leading-relaxed mt-0.5">
+                    {cmd.desc}
+                  </p>
+                  {cmd.ex && (
+                    <div
+                      className="font-mono text-[0.7rem] text-slate-600 rounded-md px-2 py-1 mt-1.5 flex items-center gap-1.5"
+                      style={{
+                        background: 'rgba(255,255,255,.03)',
+                        border: '1px solid rgba(255,255,255,.06)',
+                      }}
+                    >
+                      <span className="text-slate-700">›</span>
+                      {cmd.ex}
+                    </div>
+                  )}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Discord info box */}
+        <div
+          className="glass-blue rounded-[1.25rem] px-6 py-4 flex items-center gap-4 max-w-[560px] mx-auto mt-8"
+        >
+          <div
+            className="w-10 h-10 rounded-xl flex-shrink-0 flex items-center justify-center"
+            style={{
+              background: 'rgba(88,101,242,.15)',
+              border: '1px solid rgba(88,101,242,.3)',
+            }}
+          >
+            <DiscordSVG width={18} height={14} fill="#818cf8" />
+          </div>
+          <div>
+            <p className="text-slate-200 text-sm font-semibold">All commands are slash commands</p>
+            <p className="text-slate-600 text-[0.78rem] mt-0.5">
+              Type{' '}
+              <code className="text-indigo-400 font-mono">/</code>{' '}
+              in any Discord channel after adding Kichi to see her full command list.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
