@@ -67,7 +67,7 @@ export default function About() {
               boxShadow: '0 0 30px rgba(245,158,11,.2)',
             }}
           >
-            <AnchorIcon size={42} color="#fcd34d" />
+            <img src="/img/kichi-logo.png" alt="Kichi Logo" className="pt-1" />
             <span
               className="absolute bottom-0.5 right-0.5 w-[22px] h-[22px] rounded-full bg-green-500 flex items-center justify-center"
               style={{ border: '2px solid var(--navy-900)' }}

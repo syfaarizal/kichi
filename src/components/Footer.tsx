@@ -9,12 +9,9 @@ const navLinks = [
   { label: 'About Kichi', href: '#about' },
 ];
 
-const botLinks = [
-  { label: 'Add to Discord', href: '#' },
-  { label: 'Self-Host (Node.js)', href: '#' },
-  { label: 'OpenRouter AI', href: '#' },
-  { label: 'Piper TTS', href: '#' },
-  { label: 'Discord.js', href: '#' },
+const legalLink = [
+  { label: 'Term', href: '#' },
+  { label: 'Privacy', href: '#' },
 ];
 
 const scrollTo = (href: string) => {
@@ -30,10 +27,9 @@ export default function Footer() {
           <div className="sm:col-span-1">
             <div className="flex items-center gap-2.5 mb-3">
               <div
-                className="w-9 h-9 rounded-[10px] flex items-center justify-center text-[1.1rem]"
-                style={{ background: 'linear-gradient(135deg, #b45309, #f59e0b)' }}
+                className="w-11 h-11 rounded-[10px] flex items-center justify-center text-[1.1rem]"
               >
-                <AnchorIcon size={16} color="#ffffff" />
+                <img src="/img/kichi-logo.png" alt="Kichi Logo" />
               </div>
               <span className="font-display text-xl font-bold text-white">Kichi</span>
             </div>
@@ -112,7 +108,7 @@ export default function Footer() {
               Bot Info
             </div>
             <ul className="flex flex-col gap-2">
-              {botLinks.map((link) => (
+              {legalLink.map((link) => (
                 <li key={link.label}>
                   <a
                     href={link.href}
@@ -131,8 +127,7 @@ export default function Footer() {
           style={{ borderTop: '1px solid rgba(255,255,255,.05)' }}
         >
           <p className="text-slate-700 text-[0.8rem]">
-            Copyright 2026 Kichi (Pirate Helper). Built with{' '}
-            <AnchorIcon size={12} color="#7c2d12" /> by{' '}
+            Copyright 2026 Kichi (Pirate Helper). Built with ♥︎ by{' '}
             <span className="text-slate-600 font-medium">Kai Shi</span>.
           </p>
           <div className="flex items-center gap-4 text-slate-700 text-[0.75rem]">

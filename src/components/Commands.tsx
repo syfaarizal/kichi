@@ -17,10 +17,6 @@ interface Command {
 
 const commands: Command[] = [
   { name: '/ask-ai', cat: 'general', desc: 'Chat with Kichi or ask her to create a reminder using natural language.', ex: 'kichi bikinin reminder jam 9 malam' },
-  { name: '/help', cat: 'general', desc: 'Show all available commands and what Kichi can do for your server.' },
-  { name: '/ping', cat: 'general', desc: 'Check bot latency and make sure Kichi is alive and well.', ex: 'Pong! Latency: 42ms' },
-  { name: '/about', cat: 'general', desc: 'Info about Kichi - her backstory, who built her, and why she slaps.' },
-  { name: '/forget', cat: 'general', desc: 'Reset your personal chat memory. Fresh start with zero history.' },
   { name: '/lyrics', cat: 'general', desc: 'Search song lyrics by title and artist. Auto-splits long results into multiple embeds.', ex: '/lyrics judul:Yellow artis:Coldplay' },
   { name: '/join', cat: 'voice', desc: 'Invite Kichi to your current voice channel. She brings TTS with her.' },
   { name: '/leave', cat: 'voice', desc: 'Kick Kichi out of voice. Caller or admin/mod only - she respects the hierarchy.' },
@@ -28,7 +24,6 @@ const commands: Command[] = [
   { name: '/reminder list', cat: 'admin', desc: 'View all scheduled reminders and their status for this server.' },
   { name: '/reminder create', cat: 'admin', desc: 'Create a new custom reminder with time and message pool.' },
   { name: '/reminder edit', cat: 'admin', desc: 'Edit existing reminders: toggle on/off, change time, update messages.' },
-  { name: '/reminder delete', cat: 'admin', desc: 'Permanently remove a custom reminder from the server.' },
   { name: '/reminder channel', cat: 'admin', desc: 'Add, remove, or list channels where reminders are broadcast.' },
 ];
 
