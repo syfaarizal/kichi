@@ -107,7 +107,7 @@ export default function About() {
             <span style={{ color: '#818cf8' }}>not an assistant, not a bot, a </span>
             <em className="text-white font-semibold">friend</em>.
             <div
-              className="text-right text-[4rem] leading-[0.8] font-serif"
+              className="text-left text-[4rem] leading-[0.8] font-serif"
               style={{ color: 'rgba(245,158,11,.18)', transform: 'rotate(180deg)' }}
             >
               "

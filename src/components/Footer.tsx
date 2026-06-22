@@ -45,7 +45,7 @@ export default function Footer() {
 
             <div className="flex gap-2.5">
               <a
-                href="#"
+                href="https://discord.gg/pa9uyMTp7w"
                 aria-label="Discord"
                 className="w-9 h-9 rounded-lg flex items-center justify-center text-slate-500 transition-all duration-200 hover:text-indigo-400"
                 style={{
@@ -131,7 +131,7 @@ export default function Footer() {
           style={{ borderTop: '1px solid rgba(255,255,255,.05)' }}
         >
           <p className="text-slate-700 text-[0.8rem]">
-            Copyright 2025 Kichi (Pirate Helper). Built with{' '}
+            Copyright 2026 Kichi (Pirate Helper). Built with{' '}
             <AnchorIcon size={12} color="#7c2d12" /> by{' '}
             <span className="text-slate-600 font-medium">Kai Shi</span>.
           </p>

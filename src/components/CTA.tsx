@@ -40,7 +40,7 @@ export default function CTA() {
           </p>
 
           <a
-            href="#"
+            href="https://discord.com/oauth2/authorize?client_id=1480203870331343090&permissions=37100864&integration_type=0&scope=bot+applications.commands"
             className="inline-flex items-center gap-3 px-10 py-4.5 rounded-2xl font-extrabold text-lg text-white no-underline transition-all duration-200 hover:-translate-y-0.5"
             style={{
               background: 'linear-gradient(135deg, #5865F2, #7289da)',

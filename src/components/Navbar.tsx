@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { DiscordSVG } from './DiscordIcon';
-import { AnchorIcon } from './ThemeIcons';
 
 const navLinks = [
   { label: 'Features', href: '#features' },
@@ -50,10 +49,9 @@ export default function Navbar() {
           }}
         >
           <div
-            className="w-9 h-9 rounded-[10px] flex items-center justify-center text-[1.1rem]"
-            style={{ background: 'linear-gradient(135deg, #b45309, #f59e0b)' }}
+            className="w-10 h-10 rounded-[10px] flex items-center justify-center text-[1.1rem]"
           >
-            <AnchorIcon size={16} color="#ffffff" />
+            <img src="/img/kichi-logo.png" alt="Kichi Logo" />
           </div>
           <span className="font-display text-xl font-bold text-white">Kichi</span>
         </a>
@@ -72,7 +70,7 @@ export default function Navbar() {
         </div>
 
         <a
-          href="#"
+          href="https://discord.com/oauth2/authorize?client_id=1480203870331343090&permissions=37100864&integration_type=0&scope=bot+applications.commands"
           className="hidden md:inline-flex items-center gap-1.5 px-5 py-2.5 rounded-xl font-bold text-sm text-white transition-all duration-200 hover:-translate-y-0.5"
           style={{
             background: 'linear-gradient(135deg, #5865F2, #7289da)',

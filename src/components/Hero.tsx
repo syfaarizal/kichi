@@ -64,13 +64,9 @@ export default function Hero() {
 
             <div className="glass flex items-center gap-3 p-3 rounded-2xl mb-7 w-fit">
               <div
-                className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
-                style={{
-                  background: 'rgba(88,101,242,.2)',
-                  border: '1px solid rgba(88,101,242,.3)',
-                }}
+                className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0"
               >
-                <SparkIcon size={14} color="#818cf8" />
+                <img src="/img/kichi-logo.png" alt="Kichi Logo" />
               </div>
               <div>
                 <div className="text-[0.7rem] text-slate-600 mb-0.5">In #bot-test</div>
@@ -91,7 +87,7 @@ export default function Hero() {
 
             <div className="flex flex-wrap gap-4 mb-10">
               <a
-                href="#"
+                href="https://discord.com/oauth2/authorize?client_id=1480203870331343090&permissions=37100864&integration_type=0&scope=bot+applications.commands"
                 className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl font-bold text-base text-white transition-all duration-200 hover:-translate-y-0.5"
                 style={{
                   background: 'linear-gradient(135deg, #5865F2, #7289da)',
