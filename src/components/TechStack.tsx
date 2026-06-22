@@ -1,6 +1,9 @@
+import { DiscordSVG } from './DiscordIcon';
+import { BoltIcon, CheckIcon, DatabaseIcon, MemoryIcon, MicIcon, MusicIcon } from './ThemeIcons';
+
 const techs = [
   {
-    emoji: '🤖',
+    icon: <DiscordSVG width={18} height={14} fill="#7289da" />,
     name: 'Discord.js',
     role: 'Bot Framework',
     color: '#7289da',
@@ -8,7 +11,7 @@ const techs = [
     border: 'rgba(114,137,218,.3)',
   },
   {
-    emoji: '⚡',
+    icon: <BoltIcon size={18} color="#68a063" />,
     name: 'Node.js',
     role: 'Runtime',
     color: '#68a063',
@@ -16,7 +19,7 @@ const techs = [
     border: 'rgba(104,160,99,.3)',
   },
   {
-    emoji: '🧠',
+    icon: <MemoryIcon size={18} color="#f59e0b" />,
     name: 'OpenRouter AI',
     role: 'Language Model',
     color: '#f59e0b',
@@ -24,7 +27,7 @@ const techs = [
     border: 'rgba(245,158,11,.3)',
   },
   {
-    emoji: '🎙️',
+    icon: <MicIcon size={18} color="#c084fc" />,
     name: 'Piper TTS',
     role: 'Text-to-Speech',
     color: '#c084fc',
@@ -32,7 +35,7 @@ const techs = [
     border: 'rgba(192,132,252,.3)',
   },
   {
-    emoji: '🎵',
+    icon: <MusicIcon size={18} color="#f472b6" />,
     name: 'Genius API',
     role: 'Lyrics Metadata',
     color: '#f472b6',
@@ -40,7 +43,7 @@ const techs = [
     border: 'rgba(244,114,182,.3)',
   },
   {
-    emoji: '🗄️',
+    icon: <DatabaseIcon size={18} color="#34d399" />,
     name: 'JSON Storage',
     role: 'Guild Data',
     color: '#34d399',
@@ -50,7 +53,7 @@ const techs = [
 ];
 
 const checks = [
-  'Offline Piper TTS — no external API costs for voice',
+  'Offline Piper TTS - no external API costs for voice',
   'In-memory lyrics cache (6hr TTL) for instant results',
   'PM2-ready for production deployment',
   'Cron-based reminder scheduler, no external services',
@@ -68,9 +71,11 @@ export default function TechStack() {
 
       <div className="max-w-[1200px] mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          {/* Left: text + checks */}
           <div className="reveal">
-            <span className="pill pill-green">🔧 Built With</span>
+            <span className="pill pill-green inline-flex items-center gap-2">
+              <BoltIcon size={14} color="currentColor" />
+              Built With
+            </span>
             <h2
               className="font-bold leading-tight mt-3 mb-3"
               style={{ fontSize: 'clamp(1.8rem, 4vw, 2.5rem)' }}
@@ -93,7 +98,7 @@ export default function TechStack() {
                       border: '1px solid rgba(52,211,153,.3)',
                     }}
                   >
-                    ✓
+                    <CheckIcon size={10} color="#34d399" strokeWidth={2.4} />
                   </span>
                   {check}
                 </li>
@@ -101,7 +106,6 @@ export default function TechStack() {
             </ul>
           </div>
 
-          {/* Right: tech grid */}
           <div className="reveal grid grid-cols-2 gap-3">
             {techs.map((t) => (
               <div
@@ -115,10 +119,10 @@ export default function TechStack() {
                 }}
               >
                 <div
-                  className="w-11 h-11 rounded-xl flex-shrink-0 flex items-center justify-center text-[1.35rem] transition-transform duration-200 group-hover:scale-110"
+                  className="w-11 h-11 rounded-xl flex-shrink-0 flex items-center justify-center transition-transform duration-200 group-hover:scale-110"
                   style={{ background: t.bg, border: `1px solid ${t.border}` }}
                 >
-                  {t.emoji}
+                  {t.icon}
                 </div>
                 <div className="min-w-0">
                   <div className="font-heading text-[0.8rem] font-bold" style={{ color: t.color }}>
@@ -126,7 +130,6 @@ export default function TechStack() {
                   </div>
                   <div className="text-[0.7rem] text-slate-600 mt-0.5">{t.role}</div>
                 </div>
-                {/* Live dot */}
                 <div
                   className="w-2 h-2 rounded-full ml-auto flex-shrink-0"
                   style={{

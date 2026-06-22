@@ -1,53 +1,63 @@
+import {
+  BellIcon,
+  ChatIcon,
+  HeartIcon,
+  MemoryIcon,
+  MicIcon,
+  MusicIcon,
+  UserIcon,
+} from './ThemeIcons';
+
 const features = [
   {
-    icon: '🧠',
+    icon: <MemoryIcon size={18} color="#fbbf24" />,
     title: 'Per-User Memory',
-    desc: 'Remembers up to 20 messages per person. Kichi knows your name, message count, and first-seen date — she actually remembers you exist.',
+    desc: 'Remembers up to 20 messages per person. Kichi knows your name, message count, and first-seen date - she actually remembers you exist.',
     color: '#fbbf24',
     bg: 'rgba(245,158,11,.1)',
     border: 'rgba(245,158,11,.25)',
     badge: 'Smart',
   },
   {
-    icon: '🔔',
+    icon: <BellIcon size={18} color="#fb923c" />,
     title: 'Smart Reminders',
-    desc: '3 built-in reminders (Pagi 07:00, Siang 12:00, Malam 21:00) + custom ones per guild. Say what you need, she builds it with AI intent parsing.',
+    desc: '3 built-in reminders (Pagi 07:00, Siang 12:00, Malam 21:00) plus custom ones per guild. Say what you need, she builds it with AI intent parsing.',
     color: '#fb923c',
     bg: 'rgba(249,115,22,.1)',
     border: 'rgba(249,115,22,.25)',
     badge: 'Automated',
   },
   {
-    icon: '🎙️',
+    icon: <MicIcon size={18} color="#c084fc" />,
     title: 'Voice & TTS',
-    desc: 'Join voice channels and use /speak for offline Piper TTS. Auto-leave when VC is empty. "Free mode" hands control off when the caller leaves.',
+    desc: 'Join voice channels and use /speak for offline Piper TTS. Auto-leave when VC is empty. Free mode hands control off when the caller leaves.',
     color: '#c084fc',
     bg: 'rgba(168,85,247,.1)',
     border: 'rgba(168,85,247,.25)',
     badge: 'Offline TTS',
   },
   {
-    icon: '🎵',
+    icon: <MusicIcon size={18} color="#f472b6" />,
     title: 'Lyrics Finder',
-    desc: 'Search any song via /lyrics. Genius API for metadata, lyrics.ovh + LRCLIB fallback. In-memory cache (6 hrs) makes repeat requests instant.',
+    desc: 'Search any song via /lyrics. Genius API for metadata, lyrics.ovh plus LRCLIB fallback. In-memory cache (6 hrs) makes repeat requests instant.',
     color: '#f472b6',
     bg: 'rgba(236,72,153,.1)',
     border: 'rgba(236,72,153,.25)',
     badge: 'Instant',
   },
   {
-    icon: '💬',
+    icon: <ChatIcon size={18} color="#818cf8" />,
     title: 'AI Chat',
-    desc: 'Tag Kichi or reply to her messages — no slash command required. Anti-spam cooldown (5 sec) and natural typing delay keep things feeling human.',
+    desc: 'Tag Kichi or reply to her messages, no slash command required. Anti-spam cooldown (5 sec) and natural typing delay keep things feeling human.',
     color: '#818cf8',
     bg: 'rgba(88,101,242,.1)',
     border: 'rgba(88,101,242,.25)',
     badge: 'Natural',
   },
   {
-    icon: '👤',
+    icon: <UserIcon size={18} color="#2dd4bf" />,
     title: 'Personalization',
-    desc: 'Speak naturally in /ask-ai — "bikinin reminder jam 9 malam" and she understands. Per-guild channels, interactive edit UI, fully customizable.',
+    desc: 'Speak naturally in /ask-ai - "bikinin reminder jam 9 malam" and she understands. Per-guild channels, interactive edit UI, fully customizable.',
     color: '#2dd4bf',
     bg: 'rgba(20,184,166,.1)',
     border: 'rgba(20,184,166,.25)',
@@ -58,7 +68,6 @@ const features = [
 export default function Features() {
   return (
     <section id="features" className="relative py-24 z-[1]">
-      {/* Subtle section glow */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
@@ -67,9 +76,12 @@ export default function Features() {
       />
 
       <div className="max-w-[1200px] mx-auto px-6">
-        {/* Header */}
         <div className="text-center mb-16 reveal">
-          <span className="pill">✦ Key Features ✦</span>
+          <span className="pill inline-flex items-center gap-2">
+            <HeartIcon size={14} color="currentColor" />
+            Key Features
+            <HeartIcon size={14} color="currentColor" />
+          </span>
           <h2
             className="font-bold leading-tight mt-3 mb-3"
             style={{ fontSize: 'clamp(1.8rem, 4vw, 2.8rem)' }}
@@ -83,7 +95,6 @@ export default function Features() {
           </p>
         </div>
 
-        {/* Feature cards grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {features.map((f, i) => (
             <div
@@ -99,16 +110,14 @@ export default function Features() {
                 (e.currentTarget as HTMLDivElement).style.boxShadow = '';
               }}
             >
-              {/* Hover glow overlay */}
               <div
                 className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-[1.25rem]"
                 style={{ background: `radial-gradient(circle at 50% 0%, ${f.bg}, transparent 70%)` }}
               />
 
-              {/* Header row: icon + badge */}
               <div className="flex items-start justify-between mb-4">
                 <div
-                  className="w-12 h-12 rounded-xl flex items-center justify-center text-[1.4rem]"
+                  className="w-12 h-12 rounded-xl flex items-center justify-center"
                   style={{ background: f.bg, border: `1px solid ${f.border}` }}
                 >
                   {f.icon}
@@ -121,10 +130,7 @@ export default function Features() {
                 </span>
               </div>
 
-              <h3
-                className="font-heading text-sm font-bold mb-2"
-                style={{ color: f.color }}
-              >
+              <h3 className="font-heading text-sm font-bold mb-2" style={{ color: f.color }}>
                 {f.title}
               </h3>
               <p className="text-slate-500 text-sm leading-relaxed">{f.desc}</p>

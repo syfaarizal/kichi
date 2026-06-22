@@ -1,4 +1,5 @@
 import { DiscordSVG } from './DiscordIcon';
+import { AnchorIcon } from './ThemeIcons';
 
 const navLinks = [
   { label: 'Features', href: '#features' },
@@ -9,11 +10,11 @@ const navLinks = [
 ];
 
 const botLinks = [
-  { label: 'Add to Discord ↗', href: '#' },
-  { label: 'Self-Host (Node.js) ↗', href: '#' },
-  { label: 'OpenRouter AI ↗', href: '#' },
-  { label: 'Piper TTS ↗', href: '#' },
-  { label: 'Discord.js ↗', href: '#' },
+  { label: 'Add to Discord', href: '#' },
+  { label: 'Self-Host (Node.js)', href: '#' },
+  { label: 'OpenRouter AI', href: '#' },
+  { label: 'Piper TTS', href: '#' },
+  { label: 'Discord.js', href: '#' },
 ];
 
 const scrollTo = (href: string) => {
@@ -25,25 +26,23 @@ export default function Footer() {
   return (
     <footer className="relative z-[1]" style={{ borderTop: '1px solid rgba(255,255,255,.05)' }}>
       <div className="max-w-[1200px] mx-auto px-6">
-        {/* Main grid */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-12 py-12">
-          {/* Brand column */}
           <div className="sm:col-span-1">
             <div className="flex items-center gap-2.5 mb-3">
               <div
                 className="w-9 h-9 rounded-[10px] flex items-center justify-center text-[1.1rem]"
                 style={{ background: 'linear-gradient(135deg, #b45309, #f59e0b)' }}
               >
-                ⚓
+                <AnchorIcon size={16} color="#ffffff" />
               </div>
               <span className="font-display text-xl font-bold text-white">Kichi</span>
             </div>
 
             <p className="text-slate-600 text-sm leading-relaxed mb-5 max-w-[280px]">
-              Your server's sarcastic, Gen Z AI bestie. With per-user memory, smart reminders, voice TTS, and lyrics — she's more than a bot.
+              Your server's sarcastic, Gen Z AI bestie. With per-user memory, smart reminders,
+              voice TTS, and lyrics, she is more than a bot.
             </p>
 
-            {/* Socials */}
             <div className="flex gap-2.5">
               <a
                 href="#"
@@ -84,7 +83,6 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Navigation column */}
           <div>
             <div
               className="font-heading text-[0.7rem] font-bold uppercase tracking-widest mb-4"
@@ -106,7 +104,6 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Bot Info column */}
           <div>
             <div
               className="font-heading text-[0.7rem] font-bold uppercase tracking-widest mb-4"
@@ -129,17 +126,17 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Bottom bar */}
         <div
           className="flex flex-wrap items-center justify-between gap-4 py-5"
           style={{ borderTop: '1px solid rgba(255,255,255,.05)' }}
         >
           <p className="text-slate-700 text-[0.8rem]">
-            © 2025 Kichi (Pirate Helper). Built with ⚓ by{' '}
+            Copyright 2025 Kichi (Pirate Helper). Built with{' '}
+            <AnchorIcon size={12} color="#7c2d12" /> by{' '}
             <span className="text-slate-600 font-medium">Kai Shi</span>.
           </p>
           <div className="flex items-center gap-4 text-slate-700 text-[0.75rem]">
-            <span>Discord.js · Node.js · OpenRouter AI</span>
+            <span>Discord.js - Node.js - OpenRouter AI</span>
             <div className="flex items-center gap-1.5">
               <span className="online-dot" />
               <span>Online</span>

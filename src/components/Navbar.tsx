@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { DiscordSVG } from './DiscordIcon';
+import { AnchorIcon } from './ThemeIcons';
 
 const navLinks = [
   { label: 'Features', href: '#features' },
@@ -39,24 +40,24 @@ export default function Navbar() {
           : undefined
       }
     >
-      {/* Desktop nav */}
       <div className="max-w-[1200px] mx-auto flex items-center justify-between h-[68px] px-8">
-        {/* Logo */}
         <a
           href="#hero"
           className="flex items-center gap-2.5 cursor-pointer no-underline"
-          onClick={(e) => { e.preventDefault(); scrollTo('#hero'); }}
+          onClick={(e) => {
+            e.preventDefault();
+            scrollTo('#hero');
+          }}
         >
           <div
             className="w-9 h-9 rounded-[10px] flex items-center justify-center text-[1.1rem]"
             style={{ background: 'linear-gradient(135deg, #b45309, #f59e0b)' }}
           >
-            ⚓
+            <AnchorIcon size={16} color="#ffffff" />
           </div>
           <span className="font-display text-xl font-bold text-white">Kichi</span>
         </a>
 
-        {/* Desktop links */}
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
             <button
@@ -70,7 +71,6 @@ export default function Navbar() {
           ))}
         </div>
 
-        {/* CTA Button */}
         <a
           href="#"
           className="hidden md:inline-flex items-center gap-1.5 px-5 py-2.5 rounded-xl font-bold text-sm text-white transition-all duration-200 hover:-translate-y-0.5"
@@ -84,7 +84,6 @@ export default function Navbar() {
           Add to Discord
         </a>
 
-        {/* Hamburger */}
         <button
           className="md:hidden bg-transparent border-none text-slate-400 cursor-pointer p-2"
           onClick={() => setMenuOpen((v) => !v)}
@@ -100,7 +99,6 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile menu */}
       {menuOpen && (
         <div
           className="md:hidden flex flex-col gap-1 px-6 pb-6 pt-2"
@@ -114,7 +112,6 @@ export default function Navbar() {
               key={link.label}
               onClick={() => scrollTo(link.href)}
               className="py-3 px-4 text-left text-slate-400 text-sm rounded-lg transition-all duration-200 hover:text-amber-300 bg-transparent border-none cursor-pointer"
-              style={{ ':hover': { background: 'rgba(245,158,11,.05)' } } as React.CSSProperties}
             >
               {link.label}
             </button>

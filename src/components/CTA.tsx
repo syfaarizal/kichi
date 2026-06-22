@@ -1,4 +1,5 @@
 import { DiscordSVG } from './DiscordIcon';
+import { AnchorIcon, ArrowRightIcon, SparkIcon } from './ThemeIcons';
 
 const ctaFeatures = [
   'Free to use',
@@ -10,7 +11,6 @@ const ctaFeatures = [
 export default function CTA() {
   return (
     <section id="cta" className="relative py-28 text-center z-[1]">
-      {/* Background orb */}
       <div
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] rounded-full pointer-events-none"
         style={{
@@ -20,8 +20,9 @@ export default function CTA() {
 
       <div className="max-w-[1200px] mx-auto px-6 relative z-[1]">
         <div className="reveal">
-          <span className="pill" style={{ display: 'inline-flex', marginBottom: '1rem' }}>
-            ⚓ Ready to Join?
+          <span className="pill inline-flex items-center gap-2" style={{ display: 'inline-flex', marginBottom: '1rem' }}>
+            <AnchorIcon size={14} color="currentColor" />
+            Ready to Join?
           </span>
 
           <h2
@@ -35,10 +36,9 @@ export default function CTA() {
 
           <p className="text-slate-500 text-lg leading-relaxed max-w-[560px] mx-auto mb-10">
             Your new favorite AI companion is just a command away. Sarcastic, sharp, and actually
-            useful — your server deserves better than a basic bot.
+            useful - your server deserves better than a basic bot.
           </p>
 
-          {/* CTA Button */}
           <a
             href="#"
             className="inline-flex items-center gap-3 px-10 py-4.5 rounded-2xl font-extrabold text-lg text-white no-underline transition-all duration-200 hover:-translate-y-0.5"
@@ -57,22 +57,18 @@ export default function CTA() {
           >
             <DiscordSVG width={22} height={17} />
             Add Kichi to Discord
-            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-            </svg>
+            <ArrowRightIcon size={16} color="currentColor" strokeWidth={2.5} />
           </a>
 
-          {/* Feature bullets */}
           <div className="flex flex-wrap gap-6 justify-center mt-8">
             {ctaFeatures.map((feat) => (
               <span key={feat} className="flex items-center gap-1.5 text-sm text-slate-500">
-                <span style={{ color: 'rgba(245,158,11,.5)' }}>✦</span>
+                <SparkIcon size={12} color="rgba(245,158,11,.75)" strokeWidth={2} />
                 {feat}
               </span>
             ))}
           </div>
 
-          {/* Decorative divider */}
           <div className="flex items-center gap-4 justify-center mt-12">
             <div
               className="h-px w-20"
@@ -80,7 +76,7 @@ export default function CTA() {
                 background: 'linear-gradient(90deg, transparent, rgba(245,158,11,.3))',
               }}
             />
-            <span style={{ color: 'rgba(245,158,11,.35)', fontSize: '1.2rem' }}>⚓</span>
+            <AnchorIcon size={16} color="rgba(245,158,11,.45)" strokeWidth={2} />
             <div
               className="h-px w-20"
               style={{
