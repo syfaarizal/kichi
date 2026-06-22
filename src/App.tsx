@@ -4,7 +4,6 @@ import Hero from './components/Hero';
 import Features from './components/Features';
 import Commands from './components/Commands';
 import HowItWorks from './components/HowItWorks';
-import TechStack from './components/TechStack';
 import About from './components/About';
 import CTA from './components/CTA';
 import Footer from './components/Footer';
@@ -39,10 +38,6 @@ export default function App() {
         <HowItWorks />
 
         <div className="divider-blue" />
-
-        <TechStack />
-
-        <div className="divider-gold" />
 
         <About />
 
