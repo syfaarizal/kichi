@@ -57,7 +57,7 @@ export default function Footer() {
                 <DiscordSVG width={16} height={12} />
               </a>
               <a
-                href="#"
+                href="https://github.com/syfaarizal/pirate-discord-bot"
                 aria-label="GitHub"
                 className="w-9 h-9 rounded-lg flex items-center justify-center text-slate-500 transition-all duration-200 hover:text-indigo-400"
                 style={{
