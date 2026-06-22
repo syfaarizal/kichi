@@ -1,17 +1,16 @@
 import { DiscordSVG } from './DiscordIcon';
-import { AnchorIcon } from './ThemeIcons';
 
 const navLinks = [
   { label: 'Features', href: '#features' },
   { label: 'Commands', href: '#commands' },
   { label: 'How It Works', href: '#how-it-works' },
-  { label: 'Tech Stack', href: '#tech' },
   { label: 'About Kichi', href: '#about' },
 ];
 
 const legalLink = [
-  { label: 'Term', href: '#' },
-  { label: 'Privacy', href: '#' },
+  { label: 'Terms of Service', href: '#' },
+  { label: 'Privacy Policy', href: '#' },
+  {label: 'Report Issue', href: '#'}
 ];
 
 const scrollTo = (href: string) => {
@@ -105,7 +104,7 @@ export default function Footer() {
               className="font-heading text-[0.7rem] font-bold uppercase tracking-widest mb-4"
               style={{ color: '#818cf8' }}
             >
-              Bot Info
+              Legal
             </div>
             <ul className="flex flex-col gap-2">
               {legalLink.map((link) => (

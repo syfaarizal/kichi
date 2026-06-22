@@ -96,7 +96,7 @@ export default function Hero() {
                 }}
               >
                 <DiscordSVG width={18} height={14} />
-                Add Kichi to Discord
+                Invite Kichi to Your Server
               </a>
               <button
                 onClick={() => scrollTo('#features')}

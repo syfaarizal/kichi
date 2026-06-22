@@ -56,7 +56,7 @@ export default function CTA() {
             }}
           >
             <DiscordSVG width={22} height={17} />
-            Add Kichi to Discord
+            Invite Kichi to Your Server
             <ArrowRightIcon size={16} color="currentColor" strokeWidth={2.5} />
           </a>
 
