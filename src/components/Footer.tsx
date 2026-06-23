@@ -1,16 +1,17 @@
+import { Link } from 'react-router-dom';
 import { DiscordSVG } from './DiscordIcon';
 
 const navLinks = [
-  { label: 'Features', href: '#features' },
-  { label: 'Commands', href: '#commands' },
+  { label: 'Features',    href: '#features'    },
+  { label: 'Commands',    href: '#commands'    },
   { label: 'How It Works', href: '#how-it-works' },
-  { label: 'About Kichi', href: '#about' },
+  { label: 'About Kichi', href: '#about'       },
 ];
 
-const legalLink = [
-  { label: 'Terms of Service', href: '#' },
-  { label: 'Privacy Policy', href: '#' },
-  {label: 'Report Issue', href: '#'}
+const legalLinks = [
+  { label: 'Terms of Service', to: '/terms'        },
+  { label: 'Privacy Policy',   to: '/privacy'      },
+  { label: 'Report Issue',     to: '/report-issue' },
 ];
 
 const scrollTo = (href: string) => {
@@ -23,11 +24,11 @@ export default function Footer() {
     <footer className="relative z-[1]" style={{ borderTop: '1px solid rgba(255,255,255,.05)' }}>
       <div className="max-w-[1200px] mx-auto px-6">
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-12 py-12">
+
+          {/* ── Brand column ── */}
           <div className="sm:col-span-1">
             <div className="flex items-center gap-2.5 mb-3">
-              <div
-                className="w-11 h-11 rounded-[10px] flex items-center justify-center text-[1.1rem]"
-              >
+              <div className="w-11 h-11 rounded-[10px] flex items-center justify-center text-[1.1rem]">
                 <img src="/img/kichi-logo.png" alt="Kichi Logo" />
               </div>
               <span className="font-display text-xl font-bold text-white">Kichi</span>
@@ -39,6 +40,7 @@ export default function Footer() {
             </p>
 
             <div className="flex gap-2.5">
+              {/* Discord */}
               <a
                 href="https://discord.gg/pa9uyMTp7w"
                 aria-label="Discord"
@@ -56,6 +58,8 @@ export default function Footer() {
               >
                 <DiscordSVG width={16} height={12} />
               </a>
+
+              {/* GitHub */}
               <a
                 href="https://github.com/syfaarizal/pirate-discord-bot"
                 aria-label="GitHub"
@@ -78,6 +82,7 @@ export default function Footer() {
             </div>
           </div>
 
+          {/* ── Navigation column ── */}
           <div>
             <div
               className="font-heading text-[0.7rem] font-bold uppercase tracking-widest mb-4"
@@ -99,6 +104,7 @@ export default function Footer() {
             </ul>
           </div>
 
+          {/* ── Legal column ── */}
           <div>
             <div
               className="font-heading text-[0.7rem] font-bold uppercase tracking-widest mb-4"
@@ -107,20 +113,21 @@ export default function Footer() {
               Legal
             </div>
             <ul className="flex flex-col gap-2">
-              {legalLink.map((link) => (
+              {legalLinks.map((link) => (
                 <li key={link.label}>
-                  <a
-                    href={link.href}
+                  <Link
+                    to={link.to}
                     className="text-slate-600 text-sm no-underline transition-colors duration-200 hover:text-slate-400"
                   >
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
           </div>
         </div>
 
+        {/* ── Bottom bar ── */}
         <div
           className="flex flex-wrap items-center justify-between gap-4 py-5"
           style={{ borderTop: '1px solid rgba(255,255,255,.05)' }}
@@ -130,7 +137,7 @@ export default function Footer() {
             <span className="text-slate-600 font-medium">Kai Shi</span>.
           </p>
           <div className="flex items-center gap-4 text-slate-700 text-[0.75rem]">
-            <span>Discord.js - Node.js - OpenRouter AI</span>
+            <span>Discord.js · Node.js · OpenRouter AI</span>
             <div className="flex items-center gap-1.5">
               <span className="online-dot" />
               <span>Online</span>
