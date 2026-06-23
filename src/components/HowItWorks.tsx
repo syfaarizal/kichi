@@ -116,7 +116,7 @@ export default function HowItWorks() {
 
         <p className="text-center mt-10 text-slate-700 text-sm">
           Already a developer?{' '}
-          <a href="#" className="text-amber-400 font-semibold no-underline hover:underline ml-1">
+          <a href="https://github.com/syfaarizal/pirate-discord-bot" className="text-amber-400 font-semibold no-underline hover:underline ml-1">
             Self-host with Node.js + PM2 &rarr;
           </a>
         </p>

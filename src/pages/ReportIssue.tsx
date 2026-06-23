@@ -1,8 +1,39 @@
 import { useEffect, useState } from 'react';
+import type { ReactNode } from 'react';
 import { Link } from 'react-router-dom';
+import {
+  CompassIcon,
+  HashIcon,
+  ChatIcon,
+  BoltIcon,
+  SparkIcon,
+} from '../components/ThemeIcons';
 
 const GOLD   = '#f59e0b';
 const INDIGO = '#818cf8';
+
+// ── Inline icons not available in ThemeIcons ──────────────────────────────────
+
+const ClipboardIcon = ({ size = 16 }: { size?: number }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
+    stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round"
+    aria-hidden="true">
+    <path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2" />
+    <rect x="9" y="3" width="6" height="4" rx="1" />
+    <path d="M9 12h6M9 16h4" />
+  </svg>
+);
+
+const RefreshIcon = ({ size = 16 }: { size?: number }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
+    stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round"
+    aria-hidden="true">
+    <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
+    <path d="M3 3v5h5" />
+  </svg>
+);
+
+// ── Data ──────────────────────────────────────────────────────────────────────
 
 interface Issue {
   tag: string;
@@ -16,7 +47,7 @@ const commonIssues: Issue[] = [
   {
     tag: 'lyrics',
     tagColor: INDIGO,
-    title: '/lyrics can\'t find the right song',
+    title: "/lyrics can't find the right song",
     description:
       'The search hits three providers in order: Genius → lyrics.ovh → LRCLIB. A miss on one triggers the next automatically.',
     tip: 'Always pass both judul and artis. "Yellow" alone is ambiguous — "Yellow Coldplay" is not.',
@@ -26,7 +57,7 @@ const commonIssues: Issue[] = [
     tagColor: GOLD,
     title: '/speak has no output or fails silently',
     description:
-      'Piper TTS is an offline engine and must be installed on the host server separately. The bot won\'t warn you if it\'s missing.',
+      "Piper TTS is an offline engine and must be installed on the host server separately. The bot won't warn you if it's missing.",
     tip: 'Verify PIPER_BIN and PIPER_MODEL are correctly set in your .env. The bot also needs to be in the voice channel first (use /join).',
   },
   {
@@ -42,7 +73,7 @@ const commonIssues: Issue[] = [
     tagColor: GOLD,
     title: 'Kichi stops responding to AI messages',
     description:
-      'There\'s a 5-second per-user cooldown between AI requests. Rapid-fire messages are silently dropped, not queued.',
+      "There's a 5-second per-user cooldown between AI requests. Rapid-fire messages are silently dropped, not queued.",
     tip: 'Wait at least 5 seconds between /ask-ai calls. If the issue persists, verify your AI_KEY (OpenRouter) is valid and has remaining credits.',
   },
   {
@@ -56,7 +87,7 @@ const commonIssues: Issue[] = [
   {
     tag: 'deployment',
     tagColor: GOLD,
-    title: 'Bot goes offline and doesn\'t restart',
+    title: "Bot goes offline and doesn't restart",
     description:
       'If running via PM2, a crash without auto-restart usually means a fatal startup error — often a missing env variable.',
     tip: 'Run pm2 logs pirate-bot to see the last error. Double-check all required variables in .env against .env.example.',
@@ -64,7 +95,7 @@ const commonIssues: Issue[] = [
   {
     tag: 'permissions',
     tagColor: INDIGO,
-    title: '/reminder create/edit/delete aren\'t showing up',
+    title: "/reminder create/edit/delete aren't showing up",
     description:
       'These commands are intentionally gated. Discord only shows them to users with the Administrator or Manage Messages permission.',
     tip: 'This is expected behaviour, not a bug. Contact your server admin to get the right role.',
@@ -74,38 +105,46 @@ const commonIssues: Issue[] = [
     tagColor: GOLD,
     title: 'Kichi "forgot" something from earlier in the chat',
     description:
-      'Memory is capped at 20 messages per user and is in-session only. Once the bot restarts or you run /forget, it\'s gone.',
-    tip: 'This is by design. If you need persistent memory across restarts, that\'s a feature request — open one on GitHub.',
+      "Memory is capped at 20 messages per user and is in-session only. Once the bot restarts or you run /forget, it's gone.",
+    tip: "This is by design. If you need persistent memory across restarts, that's a feature request — open one on GitHub.",
   },
 ];
 
-const reportSteps = [
+interface ReportStep {
+  icon: ReactNode;
+  label: string;
+  detail: string;
+}
+
+const reportSteps: ReportStep[] = [
   {
-    icon: '🎯',
+    icon: <HashIcon size={16} />,
     label: 'Exact command',
     detail: 'Which slash command or @mention triggered it? Include the full input.',
   },
   {
-    icon: '📋',
+    icon: <ClipboardIcon size={16} />,
     label: 'Expected vs actual',
     detail: 'What did you expect to happen? What happened instead?',
   },
   {
-    icon: '💬',
+    icon: <ChatIcon size={16} />,
     label: 'Error message',
     detail: 'Any error embed, red text, or console output? Paste it verbatim.',
   },
   {
-    icon: '🔄',
+    icon: <RefreshIcon size={16} />,
     label: 'Reproducibility',
     detail: 'Does it happen every time? Only sometimes? After a specific action?',
   },
   {
-    icon: '🌐',
+    icon: <CompassIcon size={16} />,
     label: 'Environment',
     detail: 'Bot version / Node.js version / hosting platform (PM2, Railway, etc.).',
   },
 ];
+
+// ── Component ─────────────────────────────────────────────────────────────────
 
 export default function ReportIssue() {
   useEffect(() => {
@@ -113,7 +152,6 @@ export default function ReportIssue() {
   }, []);
 
   const [openIdx, setOpenIdx] = useState<number | null>(null);
-
   const toggle = (i: number) => setOpenIdx((prev) => (prev === i ? null : i));
 
   return (
@@ -124,7 +162,6 @@ export default function ReportIssue() {
         <Link
           to="/"
           className="inline-flex items-center gap-2 text-slate-500 text-sm transition-colors duration-200 mb-12 no-underline group"
-          style={{ ['--hover-color' as string]: GOLD }}
           onMouseEnter={(e) => (e.currentTarget.style.color = GOLD)}
           onMouseLeave={(e) => (e.currentTarget.style.color = '')}
         >
@@ -167,7 +204,12 @@ export default function ReportIssue() {
             border: '1px solid rgba(245,158,11,.18)',
           }}
         >
-          <span className="text-lg mt-0.5">🏴‍☠️</span>
+          <div
+            className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0 mt-0.5"
+            style={{ background: 'rgba(245,158,11,.12)', border: '1px solid rgba(245,158,11,.2)' }}
+          >
+            <CompassIcon size={16} color={GOLD} />
+          </div>
           <p className="text-slate-400 text-sm leading-relaxed">
             Found a bug? Kichi appreciates the report more than she'd ever admit out loud.
             Check the common issues below first — your answer might already be there. If not,
@@ -210,10 +252,7 @@ export default function ReportIssue() {
                 For bugs, reproducible errors, and feature requests. Searchable — check if yours already exists before posting.
               </div>
             </div>
-            <div
-              className="text-xs font-medium mt-auto"
-              style={{ color: GOLD }}
-            >
+            <div className="text-xs font-medium mt-auto" style={{ color: GOLD }}>
               github.com/syfaarizal/pirate-discord-bot ↗
             </div>
           </a>
@@ -241,7 +280,7 @@ export default function ReportIssue() {
               className="w-10 h-10 rounded-lg flex items-center justify-center"
               style={{ background: 'rgba(129,140,248,.1)' }}
             >
-              <svg width="18" height="14" viewBox="0 0 71 55" fill={INDIGO}>
+              <svg width="18" height="14" viewBox="0 0 71 55" fill={INDIGO} aria-hidden="true">
                 <path d="M60.1 4.9A58.5 58.5 0 0 0 45.6.4a40 40 0 0 0-1.8 3.7 54.2 54.2 0 0 0-16.3 0A38.7 38.7 0 0 0 25.7.4 58.4 58.4 0 0 0 11.1 5C1.6 19.3-.9 33.2.3 46.9a58.9 58.9 0 0 0 18 9.1 43.2 43.2 0 0 0 3.7-6 38.3 38.3 0 0 1-5.8-2.8l1.4-1.1a42 42 0 0 0 36 0l1.4 1.1a38 38 0 0 1-5.8 2.8 43 43 0 0 0 3.7 6 58.6 58.6 0 0 0 18-9A55.5 55.5 0 0 0 60.1 4.9ZM23.7 38.4c-3.5 0-6.4-3.2-6.4-7.2s2.8-7.2 6.4-7.2 6.5 3.3 6.4 7.2c0 4-2.8 7.2-6.4 7.2Zm23.6 0c-3.5 0-6.4-3.2-6.4-7.2s2.8-7.2 6.4-7.2 6.5 3.3 6.4 7.2c0 4-2.8 7.2-6.4 7.2Z" />
               </svg>
             </div>
@@ -251,10 +290,7 @@ export default function ReportIssue() {
                 For quicker back-and-forth. Good for questions, clarifications, or if you're not sure if something is a bug.
               </div>
             </div>
-            <div
-              className="text-xs font-medium mt-auto"
-              style={{ color: INDIGO }}
-            >
+            <div className="text-xs font-medium mt-auto" style={{ color: INDIGO }}>
               discord.gg/pa9uyMTp7w ↗
             </div>
           </a>
@@ -282,7 +318,7 @@ export default function ReportIssue() {
               {reportSteps.map((step, i) => (
                 <div key={i} className="flex items-start gap-4">
                   <div
-                    className="w-8 h-8 rounded-lg flex items-center justify-center text-sm shrink-0"
+                    className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0 text-slate-400"
                     style={{ background: 'rgba(245,158,11,.08)', border: '1px solid rgba(245,158,11,.12)' }}
                   >
                     {step.icon}
@@ -369,7 +405,9 @@ export default function ReportIssue() {
                         border: `1px solid ${issue.tagColor}18`,
                       }}
                     >
-                      <span className="text-sm shrink-0">💡</span>
+                      <span className="shrink-0 mt-0.5" style={{ color: issue.tagColor, opacity: 0.7 }}>
+                        <BoltIcon size={14} color={issue.tagColor} />
+                      </span>
                       <p className="text-slate-400 text-[0.82rem] leading-relaxed">{issue.tip}</p>
                     </div>
                   </div>
@@ -388,12 +426,19 @@ export default function ReportIssue() {
           }}
         >
           <div className="flex items-start gap-4">
-            <span className="text-xl shrink-0">✨</span>
+            <div
+              className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0 mt-0.5"
+              style={{ background: 'rgba(129,140,248,.1)', border: '1px solid rgba(129,140,248,.18)' }}
+            >
+              <SparkIcon size={16} color={INDIGO} />
+            </div>
             <div>
               <div className="text-white text-sm font-medium mb-1.5">Have a feature request?</div>
               <p className="text-slate-400 text-sm leading-relaxed mb-3">
                 New commands, quality-of-life improvements, new lyric providers — all welcome.
-                Open an issue on GitHub tagged <span className="text-slate-300 font-mono text-[0.78rem]">enhancement</span> and describe what you'd want and why.
+                Open an issue on GitHub tagged{' '}
+                <span className="text-slate-300 font-mono text-[0.78rem]">enhancement</span>{' '}
+                and describe what you'd want and why.
               </p>
               <a
                 href="https://github.com/syfaarizal/pirate-discord-bot/issues/new?labels=enhancement"

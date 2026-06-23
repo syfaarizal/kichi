@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { AnchorIcon } from '../components/ThemeIcons';
 
 interface Section {
   title: string;
@@ -15,7 +16,7 @@ const sections: Section[] = [
     accent: GOLD,
     items: [
       'By inviting Kichi (Pirate Helper) to your Discord server or interacting with her in any capacity, you agree to be bound by these Terms of Service.',
-      'If you don\'t agree — kick her out. No hard feelings. She\'ll survive.',
+      "If you don't agree — kick her out. No hard feelings. She'll survive.",
       'These terms apply to all users who interact with Kichi across any server she is a member of.',
     ],
   },
@@ -35,9 +36,9 @@ const sections: Section[] = [
     accent: GOLD,
     items: [
       'Do not use Kichi to harass, spam, or harm other users.',
-      'The 5-second anti-spam cooldown per user is there for a reason. Don\'t try to bypass it — it won\'t work and Kichi will silently judge you.',
+      "The 5-second anti-spam cooldown per user is there for a reason. Don't try to bypass it — it won't work and Kichi will silently judge you.",
       'Admin-only commands (/reminder create, edit, delete, channel) are intended exclusively for server administrators and moderators with appropriate permissions.',
-      'Do not attempt to jailbreak, manipulate, or alter Kichi\'s AI personality through prompt injection or social engineering.',
+      "Do not attempt to jailbreak, manipulate, or alter Kichi's AI personality through prompt injection or social engineering.",
       'Kichi must not be used to generate illegal, harmful, or explicitly malicious content.',
     ],
   },
@@ -132,7 +133,12 @@ export default function TermsOfService() {
             border: '1px solid rgba(245,158,11,.18)',
           }}
         >
-          <span className="text-lg mt-0.5">⚓</span>
+          <div
+            className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0 mt-0.5 text-amber-400"
+            style={{ background: 'rgba(245,158,11,.12)', border: '1px solid rgba(245,158,11,.2)' }}
+          >
+            <AnchorIcon size={16} color="#f59e0b" />
+          </div>
           <p className="text-slate-400 text-sm leading-relaxed">
             Kichi is your server's sarcastic, Gen Z AI bestie — not a corporate chatbot.
             These terms are short, plain, and written for actual humans. Please give them a quick read.

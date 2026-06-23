@@ -1,7 +1,58 @@
 import { useEffect } from 'react';
+import type { ReactNode } from 'react';
 import { Link } from 'react-router-dom';
+import { ShieldIcon, ChatIcon } from '../components/ThemeIcons';
 
 const INDIGO = '#818cf8';
+
+// ── Inline icons not available in ThemeIcons ──────────────────────────────────
+
+const TrashIcon = ({ size = 16 }: { size?: number }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
+    stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round"
+    aria-hidden="true">
+    <path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6" />
+  </svg>
+);
+
+const LogOutIcon = ({ size = 16 }: { size?: number }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
+    stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round"
+    aria-hidden="true">
+    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+    <polyline points="16 17 21 12 16 7" />
+    <line x1="21" y1="12" x2="9" y2="12" />
+  </svg>
+);
+
+const MailIcon = ({ size = 16 }: { size?: number }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
+    stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round"
+    aria-hidden="true">
+    <rect x="2" y="4" width="20" height="16" rx="2" />
+    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+  </svg>
+);
+
+const PencilIcon = ({ size = 16 }: { size?: number }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
+    stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round"
+    aria-hidden="true">
+    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5Z" />
+  </svg>
+);
+
+const XCircleIcon = ({ size = 14 }: { size?: number }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
+    stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round"
+    aria-hidden="true">
+    <circle cx="12" cy="12" r="10" />
+    <path d="m15 9-6 6M9 9l6 6" />
+  </svg>
+);
+
+// ── Data ──────────────────────────────────────────────────────────────────────
 
 interface DataRow {
   field: string;
@@ -10,13 +61,13 @@ interface DataRow {
 }
 
 const dataTable: DataRow[] = [
-  { field: 'Display name',       description: 'Your Discord username visible in the server',         scope: 'Per user'  },
-  { field: 'Message count',      description: 'Total messages sent to Kichi (session)',               scope: 'Per user'  },
-  { field: 'First seen date',    description: 'Timestamp of your first interaction with Kichi',       scope: 'Per user'  },
-  { field: 'Chat history',       description: 'Up to 20 most recent messages for AI context',         scope: 'Per user'  },
-  { field: 'Guild ID',           description: 'Server identifier for reminder configuration',          scope: 'Per guild' },
-  { field: 'Channel IDs',        description: 'Channels registered to receive scheduled reminders',   scope: 'Per guild' },
-  { field: 'Reminder configs',   description: 'Schedule, messages, and toggle state per reminder',     scope: 'Per guild' },
+  { field: 'Display name',     description: 'Your Discord username visible in the server',        scope: 'Per user'  },
+  { field: 'Message count',    description: 'Total messages sent to Kichi (session)',              scope: 'Per user'  },
+  { field: 'First seen date',  description: 'Timestamp of your first interaction with Kichi',     scope: 'Per user'  },
+  { field: 'Chat history',     description: 'Up to 20 most recent messages for AI context',       scope: 'Per user'  },
+  { field: 'Guild ID',         description: 'Server identifier for reminder configuration',        scope: 'Per guild' },
+  { field: 'Channel IDs',      description: 'Channels registered to receive scheduled reminders', scope: 'Per guild' },
+  { field: 'Reminder configs', description: 'Schedule, messages, and toggle state per reminder',   scope: 'Per guild' },
 ];
 
 interface ThirdParty {
@@ -30,12 +81,12 @@ const thirdParties: ThirdParty[] = [
   {
     name: 'Discord (discord.js)',
     purpose: 'Core platform — the environment Kichi runs in',
-    dataShared: 'All interactions occur within Discord\'s own infrastructure',
+    dataShared: "All interactions occur within Discord's own infrastructure",
     privacy: 'https://discord.com/privacy',
   },
   {
     name: 'OpenRouter AI',
-    purpose: 'Powers Kichi\'s AI chat responses',
+    purpose: "Powers Kichi's AI chat responses",
     dataShared: 'Your messages sent via /ask-ai or @mention are forwarded to generate replies',
     privacy: 'https://openrouter.ai/privacy',
   },
@@ -59,28 +110,45 @@ const thirdParties: ThirdParty[] = [
   },
 ];
 
-const rights = [
+interface RightItem {
+  icon: ReactNode;
+  title: string;
+  description: string;
+}
+
+const rights: RightItem[] = [
   {
-    icon: '🗑️',
+    icon: <TrashIcon size={16} />,
     title: 'Erase your chat memory',
     description: 'Use /forget at any time. Immediate, irreversible, no questions asked.',
   },
   {
-    icon: '🚪',
+    icon: <LogOutIcon size={16} />,
     title: 'Remove Kichi from your server',
     description: 'Kicking Kichi clears all guild-level data. Server admins have full control.',
   },
   {
-    icon: '📬',
+    icon: <MailIcon size={16} />,
     title: 'Request data information',
-    description: 'Contact Kai Shi via Discord or GitHub to ask what\'s stored for your account.',
+    description: "Contact Kai Shi via Discord or GitHub to ask what's stored for your account.",
   },
   {
-    icon: '✏️',
+    icon: <PencilIcon size={16} />,
     title: 'Correct your data',
     description: 'Your display name auto-syncs from Discord. Chat history resets each session.',
   },
 ];
+
+const dontDoItems = [
+  "We don't sell your data — ever.",
+  "We don't use your data for advertising.",
+  "We don't record voice audio. /speak is fully offline.",
+  "We don't track you across different servers.",
+  "We don't store conversation logs long-term.",
+  "We don't share data between servers.",
+];
+
+// ── Component ─────────────────────────────────────────────────────────────────
 
 export default function PrivacyPolicy() {
   useEffect(() => {
@@ -135,7 +203,12 @@ export default function PrivacyPolicy() {
             border: '1px solid rgba(129,140,248,.18)',
           }}
         >
-          <span className="text-lg mt-0.5">🔒</span>
+          <div
+            className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0 mt-0.5"
+            style={{ background: 'rgba(129,140,248,.12)', border: '1px solid rgba(129,140,248,.2)' }}
+          >
+            <ShieldIcon size={16} color={INDIGO} />
+          </div>
           <p className="text-slate-400 text-sm leading-relaxed">
             Kichi is a self-hosted Discord bot. Most of her data lives on the server running her —
             not in some faraway cloud database. Here's exactly what's collected, why, and how long it sticks around.
@@ -151,7 +224,6 @@ export default function PrivacyPolicy() {
             className="rounded-lg overflow-hidden"
             style={{ border: '1px solid rgba(255,255,255,.06)' }}
           >
-            {/* Table header */}
             <div
               className="grid grid-cols-[160px_1fr_90px] gap-3 px-4 py-2.5 text-[0.68rem] font-bold uppercase tracking-wider"
               style={{ background: 'rgba(129,140,248,.08)', color: INDIGO }}
@@ -186,8 +258,8 @@ export default function PrivacyPolicy() {
         <Section title="How We Use Your Data" color={INDIGO}>
           <ul className="flex flex-col gap-3">
             {[
-              { bold: 'Chat history', rest: ' gives Kichi conversational context so she doesn\'t forget what you were just talking about. It\'s wiped on /forget or bot restart.' },
-              { bold: 'User profiles', rest: ' (name, message count, first seen) let Kichi personalize her responses. She remembers your name, not your deepest secrets.' },
+              { bold: 'Chat history', rest: " gives Kichi conversational context so she doesn't forget what you were just talking about. It's wiped on /forget or bot restart." },
+              { bold: 'User profiles', rest: " (name, message count, first seen) let Kichi personalize her responses. She remembers your name, not your deepest secrets." },
               { bold: 'Reminder configs', rest: ' are stored so scheduled messages fire at the right time to the right channels. No configs = no reminders.' },
               { bold: 'Lyrics cache', rest: ' stores results in memory for 6 hours to avoid redundant API calls. Clears on restart.' },
             ].map((item, i) => (
@@ -209,9 +281,9 @@ export default function PrivacyPolicy() {
         <Section title="Data Retention" color={INDIGO}>
           <div className="grid sm:grid-cols-3 gap-3">
             {[
-              { label: 'Chat memory', value: 'Session-based', detail: 'Cleared on /forget or restart' },
-              { label: 'User profiles', value: 'In-memory', detail: 'Not persisted to disk' },
-              { label: 'Reminder configs', value: 'Persistent', detail: 'Until deleted via bot command' },
+              { label: 'Chat memory',     value: 'Session-based', detail: 'Cleared on /forget or restart'    },
+              { label: 'User profiles',   value: 'In-memory',     detail: 'Not persisted to disk'             },
+              { label: 'Reminder configs', value: 'Persistent',   detail: 'Until deleted via bot command'    },
             ].map((item) => (
               <div
                 key={item.label}
@@ -270,23 +342,19 @@ export default function PrivacyPolicy() {
         {/* ── Section 5: What we don't do ── */}
         <Section title="What We Don't Do" color={INDIGO}>
           <div className="grid sm:grid-cols-2 gap-3">
-            {[
-              '🚫 We don\'t sell your data — ever.',
-              '🚫 We don\'t use your data for advertising.',
-              '🚫 We don\'t record voice audio. /speak is fully offline.',
-              '🚫 We don\'t track you across different servers.',
-              '🚫 We don\'t store conversation logs long-term.',
-              '🚫 We don\'t share data between servers.',
-            ].map((item, i) => (
+            {dontDoItems.map((text, i) => (
               <div
                 key={i}
-                className="rounded-lg px-4 py-3 text-slate-400 text-sm"
+                className="rounded-lg px-4 py-3 flex items-center gap-3"
                 style={{
                   background: 'rgba(129,140,248,.04)',
                   border: '1px solid rgba(129,140,248,.08)',
                 }}
               >
-                {item}
+                <span className="shrink-0" style={{ color: INDIGO, opacity: 0.6 }}>
+                  <XCircleIcon size={14} />
+                </span>
+                <span className="text-slate-400 text-sm">{text}</span>
               </div>
             ))}
           </div>
@@ -304,7 +372,12 @@ export default function PrivacyPolicy() {
                   border: '1px solid rgba(255,255,255,.05)',
                 }}
               >
-                <span className="text-xl shrink-0">{right.icon}</span>
+                <div
+                  className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0 text-slate-400"
+                  style={{ background: 'rgba(129,140,248,.08)', border: '1px solid rgba(129,140,248,.15)' }}
+                >
+                  {right.icon}
+                </div>
                 <div>
                   <div className="text-slate-200 text-sm font-medium mb-1">{right.title}</div>
                   <div className="text-slate-500 text-[0.82rem] leading-relaxed">{right.description}</div>
