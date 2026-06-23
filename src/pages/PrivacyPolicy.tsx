@@ -224,33 +224,69 @@ export default function PrivacyPolicy() {
             className="rounded-lg overflow-hidden"
             style={{ border: '1px solid rgba(255,255,255,.06)' }}
           >
-            <div
-              className="grid grid-cols-[160px_1fr_90px] gap-3 px-4 py-2.5 text-[0.68rem] font-bold uppercase tracking-wider"
-              style={{ background: 'rgba(129,140,248,.08)', color: INDIGO }}
-            >
-              <span>Field</span>
-              <span>Description</span>
-              <span>Scope</span>
-            </div>
-            {dataTable.map((row, i) => (
+
+            {/* ── Desktop: 3-column grid (sm and above) ── */}
+            <div className="hidden sm:block">
               <div
-                key={row.field}
-                className="grid grid-cols-[160px_1fr_90px] gap-3 px-4 py-3 text-sm"
-                style={{
-                  background: i % 2 === 0 ? 'transparent' : 'rgba(255,255,255,.015)',
-                  borderTop: '1px solid rgba(255,255,255,.04)',
-                }}
+                className="grid grid-cols-[160px_1fr_90px] gap-3 px-4 py-2.5 text-[0.68rem] font-bold uppercase tracking-wider"
+                style={{ background: 'rgba(129,140,248,.08)', color: INDIGO }}
               >
-                <span className="text-slate-300 font-medium text-[0.82rem]">{row.field}</span>
-                <span className="text-slate-500 text-[0.82rem] leading-snug">{row.description}</span>
-                <span
-                  className="text-[0.72rem] font-mono"
-                  style={{ color: row.scope === 'Per user' ? INDIGO : '#f59e0b', opacity: 0.7 }}
-                >
-                  {row.scope}
-                </span>
+                <span>Field</span>
+                <span>Description</span>
+                <span>Scope</span>
               </div>
-            ))}
+              {dataTable.map((row, i) => (
+                <div
+                  key={row.field}
+                  className="grid grid-cols-[160px_1fr_90px] gap-3 px-4 py-3 items-center"
+                  style={{
+                    background: i % 2 === 0 ? 'transparent' : 'rgba(255,255,255,.015)',
+                    borderTop: '1px solid rgba(255,255,255,.04)',
+                  }}
+                >
+                  <span className="text-slate-300 font-medium text-[0.82rem]">{row.field}</span>
+                  <span className="text-slate-500 text-[0.82rem] leading-snug">{row.description}</span>
+                  <span
+                    className="text-[0.72rem] font-mono"
+                    style={{ color: row.scope === 'Per user' ? INDIGO : '#f59e0b', opacity: 0.7 }}
+                  >
+                    {row.scope}
+                  </span>
+                </div>
+              ))}
+            </div>
+
+            {/* ── Mobile: stacked card per row (below sm) ── */}
+            <div className="sm:hidden">
+              {dataTable.map((row, i) => (
+                <div
+                  key={row.field}
+                  className="px-4 py-3.5"
+                  style={{
+                    background: i % 2 === 0 ? 'transparent' : 'rgba(255,255,255,.015)',
+                    borderTop: i > 0 ? '1px solid rgba(255,255,255,.04)' : 'none',
+                  }}
+                >
+                  {/* Field name + scope badge on the same row */}
+                  <div className="flex items-center justify-between gap-2 mb-1.5">
+                    <span className="text-slate-300 font-medium text-[0.82rem]">{row.field}</span>
+                    <span
+                      className="text-[0.68rem] font-mono font-bold shrink-0 px-2 py-0.5 rounded"
+                      style={{
+                        color:       row.scope === 'Per user' ? INDIGO : '#f59e0b',
+                        background:  row.scope === 'Per user' ? 'rgba(129,140,248,.1)' : 'rgba(245,158,11,.1)',
+                        border:      `1px solid ${row.scope === 'Per user' ? 'rgba(129,140,248,.2)' : 'rgba(245,158,11,.2)'}`,
+                      }}
+                    >
+                      {row.scope}
+                    </span>
+                  </div>
+                  {/* Description below */}
+                  <span className="text-slate-500 text-[0.82rem] leading-relaxed">{row.description}</span>
+                </div>
+              ))}
+            </div>
+
           </div>
         </Section>
 
