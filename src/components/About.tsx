@@ -37,7 +37,7 @@ export default function About() {
         }}
       />
 
-      <div className="max-w-[1200px] mx-auto px-6">
+      <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
         <div className="text-center mb-12 reveal">
           <span className="pill inline-flex items-center gap-2">
             <AnchorIcon size={14} color="currentColor" />
@@ -51,7 +51,7 @@ export default function About() {
           </h2>
         </div>
 
-        <div className="glass reveal rounded-[2rem] px-8 py-12 text-center relative overflow-hidden max-w-[860px] mx-auto">
+        <div className="glass reveal rounded-[2rem] px-4 sm:px-8 py-10 sm:py-12 text-center relative overflow-hidden max-w-[860px] mx-auto">
           <div
             className="absolute inset-0 pointer-events-none rounded-[2rem]"
             style={{
@@ -60,14 +60,14 @@ export default function About() {
           />
 
           <div
-            className="w-[88px] h-[88px] rounded-full mx-auto mb-6 flex items-center justify-center relative"
+            className="w-[72px] h-[72px] sm:w-[88px] sm:h-[88px] rounded-full mx-auto mb-6 flex items-center justify-center relative"
             style={{
               background: 'linear-gradient(135deg, rgba(245,158,11,.18), rgba(88,101,242,.18))',
               border: '2px solid rgba(245,158,11,.4)',
               boxShadow: '0 0 30px rgba(245,158,11,.2)',
             }}
           >
-            <img src="/img/kichi-logo.png" alt="Kichi Logo" className="pt-1" />
+            <img src="/img/kichi-logo.png" alt="Kichi Logo" className="w-full h-full object-contain pt-1 block" />
             <span
               className="absolute bottom-0.5 right-0.5 w-[22px] h-[22px] rounded-full bg-green-500 flex items-center justify-center"
               style={{ border: '2px solid var(--navy-900)' }}
@@ -94,9 +94,9 @@ export default function About() {
             </div>
           </div>
 
-          <div className="text-slate-400 text-[1.05rem] leading-relaxed max-w-[640px] mx-auto mb-8 px-6 relative">
+          <div className="text-slate-400 text-base sm:text-[1.05rem] leading-relaxed max-w-[640px] mx-auto mb-8 px-2 sm:px-6 relative">
             <div
-              className="text-left text-[4rem] leading-[0.8] font-serif"
+              className="text-left text-[3rem] sm:text-[4rem] leading-[0.8] font-serif"
               style={{ color: 'rgba(245,158,11,.18)' }}
             >
               "
@@ -107,7 +107,7 @@ export default function About() {
             <span style={{ color: '#818cf8' }}>not an assistant, not a bot, a </span>
             <em className="text-white font-semibold">friend</em>.
             <div
-              className="text-left text-[4rem] leading-[0.8] font-serif"
+              className="text-left text-[3rem] sm:text-[4rem] leading-[0.8] font-serif"
               style={{ color: 'rgba(245,158,11,.18)', transform: 'rotate(180deg)' }}
             >
               "

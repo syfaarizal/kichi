@@ -39,7 +39,7 @@ export default function Navbar() {
           : undefined
       }
     >
-      <div className="max-w-[1200px] mx-auto flex items-center justify-between h-[68px] px-8">
+      <div className="max-w-[1200px] mx-auto flex items-center justify-between h-[64px] sm:h-[68px] px-4 sm:px-6 lg:px-8">
         <a
           href="#hero"
           className="flex items-center gap-2.5 cursor-pointer no-underline"
@@ -51,7 +51,7 @@ export default function Navbar() {
           <div
             className="w-10 h-10 rounded-[10px] flex items-center justify-center text-[1.1rem]"
           >
-            <img src="/img/kichi-logo.png" alt="Kichi Logo" />
+            <img src="/img/kichi-logo.png" alt="Kichi Logo" className="w-full h-full object-contain block" />
           </div>
           <span className="font-display text-xl font-bold text-white">Kichi</span>
         </a>
@@ -86,6 +86,8 @@ export default function Navbar() {
           className="md:hidden bg-transparent border-none text-slate-400 cursor-pointer p-2"
           onClick={() => setMenuOpen((v) => !v)}
           aria-label="Menu"
+          aria-expanded={menuOpen}
+          aria-controls="mobile-menu"
         >
           <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
             {menuOpen ? (
@@ -99,10 +101,13 @@ export default function Navbar() {
 
       {menuOpen && (
         <div
+          id="mobile-menu"
           className="md:hidden flex flex-col gap-1 px-6 pb-6 pt-2"
           style={{
             background: 'rgba(9,13,26,.97)',
             borderBottom: '1px solid rgba(245,158,11,.08)',
+            maxHeight: 'calc(100vh - 64px)',
+            overflowY: 'auto',
           }}
         >
           {navLinks.map((link) => (

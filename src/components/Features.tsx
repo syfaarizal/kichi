@@ -75,8 +75,8 @@ export default function Features() {
         }}
       />
 
-      <div className="max-w-[1200px] mx-auto px-6">
-        <div className="text-center mb-16 reveal">
+      <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
+        <div className="text-center mb-12 sm:mb-16 reveal">
           <span className="pill inline-flex items-center gap-2">
             <HeartIcon size={14} color="currentColor" />
             Key Features
@@ -95,11 +95,11 @@ export default function Features() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
           {features.map((f, i) => (
             <div
               key={f.title}
-              className="glass reveal rounded-[1.25rem] p-6 relative overflow-hidden transition-all duration-300 cursor-default group"
+              className="glass reveal rounded-[1.25rem] p-5 sm:p-6 relative overflow-hidden transition-all duration-300 cursor-default group"
               style={{ transitionDelay: `${i * 80}ms` }}
               onMouseEnter={(e) => {
                 (e.currentTarget as HTMLDivElement).style.transform = 'translateY(-6px)';

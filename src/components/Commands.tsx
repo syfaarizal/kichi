@@ -82,8 +82,8 @@ export default function Commands() {
         }}
       />
 
-      <div className="max-w-[1200px] mx-auto px-6">
-        <div className="text-center mb-16 reveal">
+      <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
+        <div className="text-center mb-12 sm:mb-16 reveal">
           <span className="pill pill-blue inline-flex items-center gap-2">
             <BoltIcon size={14} color="currentColor" />
             Commands
@@ -180,9 +180,9 @@ export default function Commands() {
           })}
         </div>
 
-        <div className="glass-blue rounded-[1.25rem] px-6 py-4 flex items-center gap-4 max-w-[560px] mx-auto mt-8">
+        <div className="glass-blue rounded-[1.25rem] px-4 sm:px-6 py-4 flex items-start sm:items-center gap-3 sm:gap-4 max-w-[560px] mx-auto mt-8">
           <div
-            className="w-10 h-10 rounded-xl flex-shrink-0 flex items-center justify-center"
+            className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl flex-shrink-0 flex items-center justify-center"
             style={{
               background: 'rgba(88,101,242,.15)',
               border: '1px solid rgba(88,101,242,.3)',
@@ -190,7 +190,7 @@ export default function Commands() {
           >
             <DiscordSVG width={18} height={14} fill="#818cf8" />
           </div>
-          <div>
+          <div className="min-w-0">
             <p className="text-slate-200 text-sm font-semibold">All commands are slash commands</p>
             <p className="text-slate-600 text-[0.78rem] mt-0.5">
               Type <code className="text-indigo-400 font-mono">/</code> in any Discord channel after adding Kichi to see her full command list.

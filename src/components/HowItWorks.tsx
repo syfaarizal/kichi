@@ -42,8 +42,8 @@ export default function HowItWorks() {
         }}
       />
 
-      <div className="max-w-[1200px] mx-auto px-6">
-        <div className="text-center mb-16 reveal">
+      <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
+        <div className="text-center mb-12 sm:mb-16 reveal">
           <span className="pill pill-purple inline-flex items-center gap-2">
             <CompassIcon size={14} color="currentColor" />
             How It Works
@@ -61,7 +61,7 @@ export default function HowItWorks() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 relative">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 relative">
           <div
             className="hidden lg:block absolute top-[28px] left-[12.5%] right-[12.5%] h-px pointer-events-none"
             style={{ background: 'linear-gradient(90deg, rgba(245,158,11,.2), rgba(168,85,247,.2), rgba(20,184,166,.2))' }}
@@ -70,7 +70,7 @@ export default function HowItWorks() {
           {steps.map((s, i) => (
             <div
               key={s.title}
-              className="glass reveal rounded-[1.25rem] px-5 py-7 text-center transition-all duration-300 hover:-translate-y-1 relative group"
+              className="glass reveal rounded-[1.25rem] px-4 sm:px-5 py-6 sm:py-7 text-center transition-all duration-300 hover:-translate-y-1 relative group"
               style={{ transitionDelay: `${i * 100}ms` }}
             >
               <div
