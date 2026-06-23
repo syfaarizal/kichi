@@ -69,7 +69,7 @@ export default function Hero() {
                 <img src="/img/kichi-logo.png" alt="Kichi Logo" className="w-full h-full object-contain block" />
               </div>
               <div>
-                <div className="text-[0.7rem] text-slate-600 mb-0.5">In #bot-test</div>
+                <div className="text-[0.7rem] text-slate-600 mb-0.5 text-left">In #general</div>
                 <div className="text-sm text-slate-200">
                   <span className="text-amber-400 font-semibold">Kichi</span>: oke, gua di sini
                 </div>

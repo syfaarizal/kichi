@@ -57,7 +57,7 @@ const features = [
   {
     icon: <UserIcon size={18} color="#2dd4bf" />,
     title: 'Personalization',
-    desc: 'Speak naturally in /ask-ai - "bikinin reminder jam 9 malam" and she understands. Per-guild channels, interactive edit UI, fully customizable.',
+    desc: 'Speak naturally in /ask-ai - Kichi will remember you, roast you, and sing lyrics. The more you talk to her, the better she gets.',
     color: '#2dd4bf',
     bg: 'rgba(20,184,166,.1)',
     border: 'rgba(20,184,166,.25)',

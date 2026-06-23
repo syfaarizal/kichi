@@ -16,7 +16,7 @@ interface Command {
 }
 
 const commands: Command[] = [
-  { name: '/ask-ai', cat: 'general', desc: 'Chat with Kichi or ask her to create a reminder using natural language.', ex: 'kichi bikinin reminder jam 9 malam' },
+  { name: '/ask-ai', cat: 'general', desc: 'Chat with Kichi or ask her to create a reminder using natural language.', ex: 'yo wassup kichi' },
   { name: '/lyrics', cat: 'general', desc: 'Search song lyrics by title and artist. Auto-splits long results into multiple embeds.', ex: '/lyrics judul:Yellow artis:Coldplay' },
   { name: '/join', cat: 'voice', desc: 'Invite Kichi to your current voice channel. She brings TTS with her.' },
   { name: '/leave', cat: 'voice', desc: 'Kick Kichi out of voice. Caller or admin/mod only - she respects the hierarchy.' },
