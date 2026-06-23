@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import ParticlesBg from './components/ParticlesBg';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
@@ -41,28 +41,36 @@ function HomePage() {
   );
 }
 
-export default function App() {
-  useScrollReveal();
+function AppShell() {
+  const location = useLocation();
+
+  useScrollReveal([location.pathname]);
 
   return (
+    <div className="bg-mesh min-h-screen">
+      {/* Fixed particle background */}
+      <ParticlesBg />
+
+      {/* Sticky navigation */}
+      <Navbar />
+
+      {/* Page routes */}
+      <Routes>
+        <Route path="/"             element={<HomePage />} />
+        <Route path="/terms"        element={<TermsOfService />} />
+        <Route path="/privacy"      element={<PrivacyPolicy />} />
+        <Route path="/report-issue" element={<ReportIssue />} />
+      </Routes>
+
+      <Footer />
+    </div>
+  );
+}
+
+export default function App() {
+  return (
     <BrowserRouter>
-      <div className="bg-mesh min-h-screen">
-        {/* Fixed particle background */}
-        <ParticlesBg />
-
-        {/* Sticky navigation */}
-        <Navbar />
-
-        {/* Page routes */}
-        <Routes>
-          <Route path="/"             element={<HomePage />} />
-          <Route path="/terms"        element={<TermsOfService />} />
-          <Route path="/privacy"      element={<PrivacyPolicy />} />
-          <Route path="/report-issue" element={<ReportIssue />} />
-        </Routes>
-
-        <Footer />
-      </div>
+      <AppShell />
     </BrowserRouter>
   );
 }

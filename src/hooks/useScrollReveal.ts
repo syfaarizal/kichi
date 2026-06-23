@@ -1,6 +1,6 @@
-import { useEffect } from 'react';
+import { useEffect, type DependencyList } from 'react';
 
-export function useScrollReveal() {
+export function useScrollReveal(deps: DependencyList = []) {
   useEffect(() => {
     const io = new IntersectionObserver(
       (entries) => {
@@ -34,5 +34,5 @@ export function useScrollReveal() {
       clearTimeout(timer);
       io.disconnect();
     };
-  }, []);
+  }, deps);
 }
