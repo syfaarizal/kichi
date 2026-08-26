@@ -42,7 +42,7 @@ export default function Footer() {
             <div className="flex gap-2.5">
               {/* Discord */}
               <a
-                href="https://discord.gg/pa9uyMTp7w"
+                href="https://discord.gg/84NbEnYNdN"
                 aria-label="Discord"
                 className="w-9 h-9 rounded-lg flex items-center justify-center text-slate-500 transition-all duration-200 hover:text-indigo-400"
                 style={{

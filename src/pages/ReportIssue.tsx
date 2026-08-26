@@ -259,7 +259,7 @@ export default function ReportIssue() {
 
           {/* Discord */}
           <a
-            href="https://discord.gg/pa9uyMTp7w"
+            href="https://discord.gg/84NbEnYNdN"
             target="_blank"
             rel="noopener noreferrer"
             className="group rounded-xl p-6 no-underline flex flex-col gap-4 transition-all duration-200"
@@ -291,7 +291,7 @@ export default function ReportIssue() {
               </div>
             </div>
             <div className="text-xs font-medium mt-auto" style={{ color: INDIGO }}>
-              discord.gg/pa9uyMTp7w ↗
+              discord.gg/84NbEnYNdN ↗
             </div>
           </a>
         </div>

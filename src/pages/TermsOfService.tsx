@@ -207,7 +207,7 @@ export default function TermsOfService() {
           </p>
           <div className="flex items-center gap-5 text-[0.78rem]">
             <a
-              href="https://discord.gg/pa9uyMTp7w"
+              href="https://discord.gg/84NbEnYNdN"
               target="_blank"
               rel="noopener noreferrer"
               className="text-slate-600 hover:text-amber-400 transition-colors no-underline"

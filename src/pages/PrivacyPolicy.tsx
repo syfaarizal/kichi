@@ -446,7 +446,7 @@ export default function PrivacyPolicy() {
               Open a GitHub Issue
             </a>
             <a
-              href="https://discord.gg/pa9uyMTp7w"
+              href="https://discord.gg/84NbEnYNdN"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-lg px-5 py-3 text-sm font-medium no-underline transition-all duration-200"
