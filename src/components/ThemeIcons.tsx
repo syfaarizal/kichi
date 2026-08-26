@@ -139,3 +139,11 @@ export const ChevronDownIcon = createIcon(
 export const CheckIcon = createIcon(
   <path d="m5 13 4 4L19 7" />,
 );
+
+export const CalendarIcon = createIcon(
+  <>
+    <rect x="3" y="5" width="18" height="17" rx="2" />
+    <path d="M16 3v4M8 3v4M3 9h18" />
+    <path d="M8 2v2M12 2v2M16 2v2" />
+  </>,
+);

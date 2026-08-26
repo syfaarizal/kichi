@@ -1,5 +1,6 @@
 import {
   BellIcon,
+  CalendarIcon,
   ChatIcon,
   HeartIcon,
   MemoryIcon,
@@ -62,6 +63,15 @@ const features = [
     bg: 'rgba(20,184,166,.1)',
     border: 'rgba(20,184,166,.25)',
     badge: 'Per-Guild',
+  },
+  {
+    icon: <CalendarIcon size={18} color="#f97316" />,
+    title: 'Special Days',
+    desc: '15 holidays and events — from New Year and Eid to Kartini Day and Halloween. Kichi auto-wishes your server on the right day, every year.',
+    color: '#f97316',
+    bg: 'rgba(249,115,22,.1)',
+    border: 'rgba(249,115,22,.25)',
+    badge: 'Auto-Wishes',
   },
 ];
 

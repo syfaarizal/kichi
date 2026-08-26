@@ -20,7 +20,7 @@ const steps = [
     icon: <ArrowRightIcon size={18} color="#c084fc" strokeWidth={2.2} />,
     title: 'Use Commands',
     desc: 'Run /ask-ai, /lyrics, /join, /reminder and more. Admins can set up automated reminders for the whole server.',
-    detail: '10+ Slash Commands',
+    detail: '13 Slash Commands',
     col: 'rgba(168,85,247',
   },
   {

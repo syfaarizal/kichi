@@ -123,7 +123,7 @@ export default function Hero() {
             <div className="flex flex-wrap justify-center lg:justify-start gap-6 sm:gap-8">
               {[
                 { value: '3+', label: 'Built-in Reminders' },
-                { value: '10+', label: 'Slash Commands' },
+                { value: '13', label: 'Slash Commands' },
                 { value: '100%', label: 'Free to Use' },
               ].map((stat) => (
                 <div key={stat.label}>

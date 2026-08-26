@@ -16,6 +16,10 @@ interface Command {
 }
 
 const commands: Command[] = [
+  { name: '/help', cat: 'general', desc: 'Show all available commands and how to use them.' },
+  { name: '/ping', cat: 'general', desc: 'Check Kichi\'s latency and connection status.' },
+  { name: '/about', cat: 'general', desc: 'Get to know Kichi — her personality, creator, and what she can do.' },
+  { name: '/forget', cat: 'general', desc: 'Reset your chat memory with Kichi. Start fresh if things got too weird.' },
   { name: '/ask-ai', cat: 'general', desc: 'Chat with Kichi and she will answer your questions.', ex: 'yo wassup kichi' },
   { name: '/lyrics', cat: 'general', desc: 'Search song lyrics by title and artist. Auto-splits long results into multiple embeds.', ex: '/lyrics judul:Yellow artis:Coldplay' },
   { name: '/join', cat: 'voice', desc: 'Invite Kichi to your current voice channel. She brings TTS with her.' },
